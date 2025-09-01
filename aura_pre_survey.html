@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Pre-Launch Survey</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chosen Palette: "Teal and Warm Neutrals" - inspired by the provided PDF, using a soft, inviting aesthetic that appeals to the target Gen Z and Millennial demographic. -->
+    <!-- Application Structure Plan: A single-page, linear survey form. The structure guides the user sequentially through an introduction, a visual showcase of the brand's "vibe" with sample images, and categorized question sets. This is the most intuitive flow for a survey, minimizing friction and encouraging completion. A progress bar is included to motivate users by showing them how close they are to the end. The final step is a non-disruptive thank-you modal upon submission, providing a modern, seamless user experience without a page reload. This structure was chosen to be direct, engaging, and mobile-first, which is ideal for capturing feedback from a young, social-media-savvy audience. -->
+    <!-- Visualization & Content Choices: The primary "visualization" is the image gallery. Report Info: Sample product photos. -> Goal: Inform & Engage. Give users a concrete sense of the brand's aesthetic. -> Presentation: A responsive image grid using HTML/Tailwind. -> Interaction: Viewing the images provides context for the questions. -> Justification: Critical for a visual brand's pre-launch survey. It anchors user feedback in the actual product style. || The survey itself uses custom-styled radio buttons and text areas. Report Info: Survey questions. -> Goal: Gather structured and qualitative feedback. -> Presentation: Interactive HTML form elements styled with Tailwind. -> Interaction: Users select options or type answers. -> Justification: Custom styling makes the form feel more on-brand and less generic, enhancing user engagement. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7fafc;
+        }
+        .progress-bar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: #e2e8f0;
+            z-index: 50;
+        }
+        .progress-bar {
+            height: 100%;
+            background-color: #4fd1c5;
+            width: 0%;
+            transition: width 0.3s ease-in-out;
+        }
+        .form-radio:checked + label {
+            border-color: #4fd1c5;
+            background-color: #e6fffa;
+            color: #2c7a7b;
+            font-weight: 500;
+        }
+        .form-radio:focus + label {
+            box-shadow: 0 0 0 3px rgba(79, 209, 197, 0.5);
+        }
+        .form-checkbox:checked + label {
+            border-color: #4fd1c5;
+            background-color: #e6fffa;
+            color: #2c7a7b;
+            font-weight: 500;
+        }
+        .form-checkbox:focus + label {
+            box-shadow: 0 0 0 3px rgba(79, 209, 197, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="progress-bar-container">
+        <div id="progressBar" class="progress-bar"></div>
+    </div>
+
+    <div class="container mx-auto max-w-2xl px-4 py-16 sm:py-24">
+        
+        <header class="text-center mb-12">
+            <img src="<IMAGE>" alt="Aura logo with a geometric diamond" class="mx-auto w-48 mb-4">
+        </header>
+
+        <main id="surveyFormContainer" class="bg-white p-6 sm:p-10 rounded-2xl shadow-lg">
+            <div class="text-center">
+                <h2 class="text-2xl font-bold text-gray-900">🎁 AURA Mystery Box Survey (MAHE Bengaluru Students)</h2>
+                <p class="mt-4 text-gray-600">
+                    Hey MAHE fam ✨ We’re launching AURA – curated jewellery & accessory mystery boxes designed just for students. Quick survey → Your feedback = Your vibe inside the box 💛
+                </p>
+            </div>
+
+            <hr class="my-8 border-gray-200">
+
+            <form id="auraSurveyForm" action="https://formspree.io/f/mkgvzblr" method="POST">
+                <div class="space-y-10">
+                    
+                    <fieldset>
+                        <legend class="text-xl font-semibold text-gray-800 mb-4">👩‍🎓 About You</legend>
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-md font-medium text-gray-700 mb-3">1. Year of study:</label>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <input type="radio" name="yearOfStudy" id="q1a" value="1st year" class="form-radio hidden">
+                                    <label for="q1a" class="block cursor-pointer p-4 border border-gray-300 rounded-lg text-center transition duration-200">1st year</label>
+                                    <input type="radio" name="yearOfStudy" id="q1b" value="2nd year" class="form-radio hidden">
+                                    <label for="q1b" class="block cursor-pointer p-4 border border-gray-300 rounded-lg text-center transition duration-200">2nd year</label>
+                                    <input type="radio" name="yearOfStudy" id="q1c" value="3rd year" class="form-radio hidden">
+                                    <label for="q1c" class="block cursor-pointer p-4 border border-gray-300 rounded-lg text-center transition duration-200">3rd year</label>
+                                    <input type="radio" name="yearOfStudy" id="q1d" value="final year" class="form-radio hidden">
+                                    <label for="q1d" class="block cursor-pointer p-4 border border-gray-300 rounded-lg text-center transition duration-200">Final year / Postgrad</label>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-md font-medium text-gray-700 mb-3">2. Which MAHE Bengaluru college are you in?</label>
+                                <div class="space-y-3">
+                                    <input type="radio" name="college" id="q2a" value="TAPMI School of Business" class="form-radio hidden">
+                                    <label for="q2a" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">TAPMI School of Business</label>
+                                    <input type="radio" name="college" id="q2b" value="Manipal Institute of Regenerative Medicine (MIRM)" class="form-radio hidden">
+                                    <label for="q2b" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Manipal Institute of Regenerative Medicine (MIRM)</label>
+                                    <input type="radio" name="college" id="q2c" value="Manipal College of Nursing (MCON)" class="form-radio hidden">
+                                    <label for="q2c" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Manipal College of Nursing (MCON)</label>
+                                    <input type="radio" name="college" id="q2d" value="Welcomgroup Graduate School of Hotel Administration (WGSHA)" class="form-radio hidden">
+                                    <label for="q2d" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Welcomgroup Graduate School of Hotel Administration (WGSHA)</label>
+                                    <input type="radio" name="college" id="q2e" value="Department of Public Policy" class="form-radio hidden">
+                                    <label for="q2e" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Department of Public Policy</label>
+                                    <input type="radio" name="college" id="q2f" value="Department of Liberal Arts, Humanities & Social Sciences (DLHS)" class="form-radio hidden">
+                                    <label for="q2f" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Department of Liberal Arts, Humanities & Social Sciences (DLHS)</label>
+                                    <div class="flex items-center space-x-2 p-4 border border-gray-300 rounded-lg">
+                                        <input type="radio" name="college" id="q2g" value="Other" class="form-radio">
+                                        <label for="q2g" class="cursor-pointer text-gray-700 font-medium">Other</label>
+                                        <input type="text" name="college_other" placeholder="Please specify" class="flex-grow p-1 text-sm border-b border-gray-300 focus:outline-none focus:border-teal-500">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    
+                    <fieldset>
+                        <legend class="text-xl font-semibold text-gray-800 mb-4">💍 Your Style & Shopping Habits</legend>
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-md font-medium text-gray-700 mb-3">3. How often do you shop for jewellery/accessories?</label>
+                                <div class="space-y-3">
+                                    <input type="radio" name="shoppingFrequency" id="q3a" value="monthly" class="form-radio hidden">
+                                    <label for="q3a" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Almost every month</label>
+                                    <input type="radio" name="shoppingFrequency" id="q3b" value="bimonthly" class="form-radio hidden">
+                                    <label for="q3b" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Once in 2–3 months</label>
+                                    <input type="radio" name="shoppingFrequency" id="q3c" value="rarely" class="form-radio hidden">
+                                    <label for="q3c" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Rarely</label>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-md font-medium text-gray-700 mb-3">4. Where do you usually shop from? (Select all that apply)</label>
+                                <div class="space-y-3">
+                                    <input type="checkbox" name="shoppingLocation" id="q4a" value="Insta stores / Student-run brands" class="form-checkbox hidden">
+                                    <label for="q4a" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Insta stores / Student-run brands</label>
+                                    <input type="checkbox" name="shoppingLocation" id="q4b" value="Online (Myntra, Amazon, Ajio, etc.)" class="form-checkbox hidden">
+                                    <label for="q4b" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Online (Myntra, Amazon, Ajio, etc.)</label>
+                                    <input type="checkbox" name="shoppingLocation" id="q4c" value="Local markets / Street shopping" class="form-checkbox hidden">
+                                    <label for="q4c" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Local markets / Street shopping</label>
+                                    <input type="checkbox" name="shoppingLocation" id="q4d" value="Malls & branded outlets" class="form-checkbox hidden">
+                                    <label for="q4d" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Malls & branded outlets</label>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-md font-medium text-gray-700 mb-3">5. Which type of accessories excite you most? (Select all that apply)</label>
+                                <div class="space-y-3">
+                                    <input type="checkbox" name="accessoryType" id="q5a" value="Earrings" class="form-checkbox hidden">
+                                    <label for="q5a" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Earrings</label>
+                                    <input type="checkbox" name="accessoryType" id="q5b" value="Bracelets / Bangles" class="form-checkbox hidden">
+                                    <label for="q5b" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Bracelets / Bangles</label>
+                                    <input type="checkbox" name="accessoryType" id="q5c" value="Rings" class="form-checkbox hidden">
+                                    <label for="q5c" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Rings</label>
+                                    <input type="checkbox" name="accessoryType" id="q5d" value="Neckpieces" class="form-checkbox hidden">
+                                    <label for="q5d" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Neckpieces</label>
+                                    <input type="checkbox" name="accessoryType" id="q5e" value="A mix (surprise me 🤩)" class="form-checkbox hidden">
+                                    <label for="q5e" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">A mix (surprise me 🤩)</label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend class="text-xl font-semibold text-gray-800 mb-4">🎁 Mystery Box Concept</legend>
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-md font-medium text-gray-700 mb-3">6. Would you be interested in buying AURA curated mystery boxes (trendy jewellery + surprises)?</label>
+                                <div class="space-y-3">
+                                    <input type="radio" name="interestInMysteryBox" id="q6a" value="Yes, 100%!" class="form-radio hidden">
+                                    <label for="q6a" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Yes, 100%!</label>
+                                    <input type="radio" name="interestInMysteryBox" id="q6b" value="Maybe, depends on price/style" class="form-radio hidden">
+                                    <label for="q6b" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Maybe, depends on price/style</label>
+                                    <input type="radio" name="interestInMysteryBox" id="q6c" value="Not really" class="form-radio hidden">
+                                    <label for="q6c" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Not really</label>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-md font-medium text-gray-700 mb-3">7. Which price tier feels right for you as a student?</label>
+                                <div class="space-y-3">
+                                    <input type="radio" name="priceTier" id="q7a" value="200" class="form-radio hidden">
+                                    <label for="q7a" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">₹200 (budget-friendly, small surprises)</label>
+                                    <input type="radio" name="priceTier" id="q7b" value="500" class="form-radio hidden">
+                                    <label for="q7b" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">₹500 (mid-range, more variety)</label>
+                                    <input type="radio" name="priceTier" id="q7c" value="1000" class="form-radio hidden">
+                                    <label for="q7c" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">₹1000 (premium, statement pieces)</label>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-md font-medium text-gray-700 mb-3">8. How important is aesthetic packaging/unboxing for you?</label>
+                                <div class="space-y-3">
+                                    <input type="radio" name="packagingImportance" id="q8a" value="Super important" class="form-radio hidden">
+                                    <label for="q8a" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Super important (Instagram-worthy ✨)</label>
+                                    <input type="radio" name="packagingImportance" id="q8b" value="Nice to have" class="form-radio hidden">
+                                    <label for="q8b" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Nice to have</label>
+                                    <input type="radio" name="packagingImportance" id="q8c" value="Doesn’t matter" class="form-radio hidden">
+                                    <label for="q8c" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Doesn’t matter</label>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-md font-medium text-gray-700 mb-3">9. Why would you buy an AURA Mystery Box? (tick all that apply)</label>
+                                <div class="space-y-3">
+                                    <input type="checkbox" name="reasonToBuy" id="q9a" value="Affordable" class="form-checkbox hidden">
+                                    <label for="q9a" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Affordable & student-friendly pricing</label>
+                                    <input type="checkbox" name="reasonToBuy" id="q9b" value="Trendy" class="form-checkbox hidden">
+                                    <label for="q9b" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Trendy accessories I’ll actually use</label>
+                                    <input type="checkbox" name="reasonToBuy" id="q9c" value="Fun unboxing" class="form-checkbox hidden">
+                                    <label for="q9c" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Fun surprise/unboxing vibe</label>
+                                    <input type="checkbox" name="reasonToBuy" id="q9d" value="Gifting" class="form-checkbox hidden">
+                                    <label for="q9d" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">For gifting friends</label>
+                                    <input type="checkbox" name="reasonToBuy" id="q9e" value="Show off" class="form-checkbox hidden">
+                                    <label for="q9e" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">To show off on Insta 😉</label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    
+                    <fieldset>
+                        <legend class="text-xl font-semibold text-gray-800 mb-4">⏰ Delivery Preferences</legend>
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-md font-medium text-gray-700 mb-3">10. How quickly would you want your mystery box after placing the order?</label>
+                                <div class="space-y-3">
+                                    <input type="radio" name="deliverySpeed" id="q10a" value="Same day" class="form-radio hidden">
+                                    <label for="q10a" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Same day (ultra-fast 🚀)</label>
+                                    <input type="radio" name="deliverySpeed" id="q10b" value="2-3 days" class="form-radio hidden">
+                                    <label for="q10b" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Within 2–3 days</label>
+                                    <input type="radio" name="deliverySpeed" id="q10c" value="within a week" class="form-radio hidden">
+                                    <label for="q10c" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Within a week (okay if curated on demand)</label>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-md font-medium text-gray-700 mb-3">11. Would you be willing to pre-order your mystery box for delivery during fests / special events (e.g., Utsav, freshers, farewells)?</label>
+                                <div class="space-y-3">
+                                    <input type="radio" name="preOrder" id="q11a" value="Yes, I plan ahead" class="form-radio hidden">
+                                    <label for="q11a" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Yes, I plan ahead</label>
+                                    <input type="radio" name="preOrder" id="q11b" value="Maybe, depends on timing" class="form-radio hidden">
+                                    <label for="q11b" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Maybe, depends on timing</label>
+                                    <input type="radio" name="preOrder" id="q11c" value="No, I prefer instant purchase" class="form-radio hidden">
+                                    <label for="q11c" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">No, I prefer instant purchase</label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend class="text-xl font-semibold text-gray-800 mb-4">📣 Final Thoughts</legend>
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-md font-medium text-gray-700 mb-3">12. How likely are you to recommend AURA to your friends if you love the box?</label>
+                                <div class="space-y-3">
+                                    <input type="radio" name="recommendationLikelihood" id="q12a" value="Definitely" class="form-radio hidden">
+                                    <label for="q12a" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Definitely</label>
+                                    <input type="radio" name="recommendationLikelihood" id="q12b" value="Maybe" class="form-radio hidden">
+                                    <label for="q12b" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Maybe</label>
+                                    <input type="radio" name="recommendationLikelihood" id="q12c" value="Not sure" class="form-radio hidden">
+                                    <label for="q12c" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Not sure</label>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-md font-medium text-gray-700 mb-3">13. Where would you prefer to shop AURA Mystery Boxes?</label>
+                                <div class="space-y-3">
+                                    <input type="checkbox" name="preferredShoppingLocation" id="q13a" value="Instagram / DM orders" class="form-checkbox hidden">
+                                    <label for="q13a" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Instagram / DM orders</label>
+                                    <input type="checkbox" name="preferredShoppingLocation" id="q13b" value="Pop-up stalls on campus" class="form-checkbox hidden">
+                                    <label for="q13b" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Pop-up stalls on campus</label>
+                                    <input type="checkbox" name="preferredShoppingLocation" id="q13c" value="Website / Online store" class="form-checkbox hidden">
+                                    <label for="q13c" class="block cursor-pointer p-4 border border-gray-300 rounded-lg transition duration-200">Website / Online store</label>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="suggestions" class="block text-md font-medium text-gray-700 mb-2">14. Drop any ideas/suggestions you’d like us to add in AURA boxes 👇</label>
+                                <textarea id="suggestions" name="suggestions" rows="3" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500 transition" placeholder="..."></textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="mt-10 pt-6 border-t border-gray-200">
+                    <button type="submit" class="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-4 px-4 rounded-lg text-lg transition duration-300 transform hover:scale-105">
+                        Submit & Help Launch Aura!
+                    </button>
+                </div>
+            </form>
+            <p class="text-center text-sm text-gray-500 mt-6">⚡ Takes 2 mins max! One lucky respondent wins a FREE AURA mystery box 🎁</p>
+        </main>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const progressBar = document.getElementById('progressBar');
+            function updateProgressBar() {
+                const scrollPosition = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                if (docHeight > 0) {
+                    const scrolled = (scrollPosition / docHeight) * 100;
+                    progressBar.style.width = `${scrolled}%`;
+                }
+            }
+            window.addEventListener('scroll', updateProgressBar);
+            updateProgressBar();
+        });
+    </script>
+</body>
+</html>
